@@ -22,16 +22,16 @@ public class Action {
 
     public void openBaseURL(){
         driver.get(FetchURLs.getURL("baseURL"));
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), 
-        "Grid Gate");
+        //Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), "Grid Gate");
 
     }
 
     public void gridGate(){
         WebElement greenbox = driver.findElement(By.className("greenbox"));
         greenbox.click();
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), 
-        "Frame Dungeon");
+
+
+        //Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), "Frame Dungeon");
     }
 
     public void frameDungeon(){
@@ -48,8 +48,7 @@ public class Action {
         driver.switchTo().parentFrame();
         driver.findElement(By.linkText("Proceed")).click();
 
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), 
-        "Drag Around");
+        //Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), "Drag Around");
     }
 
     public void dragAround(){
@@ -58,8 +57,7 @@ public class Action {
         Actions act = new Actions(driver);
         act.dragAndDrop(dragBox, dropBox).build().perform();
         driver.findElement(By.linkText("Proceed")).click();
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), 
-        "Popup Windows");
+        //Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), "Popup Windows");
     }
 
     public void popupWindow(){
@@ -70,8 +68,11 @@ public class Action {
         driver.findElement(By.id("submit")).click();
         driver.switchTo().window(mainWindowHandle);
         driver.findElement(By.linkText("Proceed")).click();
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[2]/h1")).getText(), 
-        "Cookie Handling");
+        
+    }
+
+    public void verify(String elementLocator, String title){
+        Assert.assertEquals(driver.findElement(By.xpath(elementLocator)).getText(), title);
     }
 }
 
