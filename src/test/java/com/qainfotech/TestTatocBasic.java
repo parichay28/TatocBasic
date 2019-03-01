@@ -20,29 +20,37 @@ public class TestTatocBasic {
     @Test
     public void openTatocBasic(){
         action.openBaseURL();
+        action.verify("/html/body/div/div[2]/h1", "Grid Gate");
+
     }
 
     @Test (dependsOnMethods = {"openTatocBasic"})
     public void testGridGate(){
         //driver.get(TestTatocActions.getURL("gridGateURL"));
         action.gridGate();
+        action.verify("/html/body/div/div[2]/h1", "Frame Dungeon");
+
     }
 
     @Test (dependsOnMethods = {"testGridGate"})
     public void testFrameDungeon(){
         action.frameDungeon();
+        action.verify("/html/body/div/div[2]/h1", "Drag Around");
+
         
         }
 
     @Test (dependsOnMethods = {"testFrameDungeon"})
     public void testDragAround(){
         action.dragAround();
+        action.verify("/html/body/div/div[2]/h1", "Popup Windows");
                 
     }
 
     @Test (dependsOnMethods = {"testDragAround"})
-    public void testPopupWindow() throws InterruptedException {
+    public void testPopupWindow() {
         action.popupWindow();
+        action.verify("/html/body/div/div[2]/h1", "Cookie Handling");
                 
     }
 
